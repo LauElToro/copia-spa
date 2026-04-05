@@ -1,0 +1,1 @@
+export { AnimatedProductCard } from './animated-product-card'; 

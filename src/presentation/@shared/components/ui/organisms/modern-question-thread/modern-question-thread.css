@@ -1,0 +1,22 @@
+.modern-question-thread__node {
+  position: relative;
+}
+
+.modern-question-thread__node[data-depth="0"] {
+  /* Root level questions */
+}
+
+.modern-question-thread__node[data-depth="1"] {
+  /* First level replies */
+}
+
+.modern-question-thread__node[data-depth="2"] {
+  /* Second level replies (nested) */
+}
+
+@media (max-width: 768px) {
+  .modern-question-thread__node {
+    gap: 16px;
+  }
+}
+

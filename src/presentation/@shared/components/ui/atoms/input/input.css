@@ -1,0 +1,126 @@
+/* Input focus styles */
+.input-focus-default:focus {
+  outline: none;
+  box-shadow: var(--focus-box-shadow);
+  border-color: var(--focus-border-color) !important;
+}
+
+.input-focus-error:focus {
+  outline: none;
+  box-shadow: var(--focus-box-shadow);
+  border-color: var(--focus-border-color) !important;
+}
+
+.input-focus-success:focus {
+  outline: none;
+  box-shadow: var(--focus-box-shadow);
+  border-color: var(--focus-border-color) !important;
+}
+
+.input-focus-disabled:focus {
+  outline: none;
+  box-shadow: var(--focus-box-shadow);
+  border-color: var(--focus-border-color) !important;
+}
+
+.input-focus-ghost:focus {
+  outline: none;
+  box-shadow: var(--focus-box-shadow);
+  border-color: var(--focus-border-color) !important;
+}
+
+/* General input styles */
+.input-group input {
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.input-placeholder::placeholder {
+  color: var(--placeholder-color) !important;
+}
+
+.input-group-text-left {
+  border: unset;
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  left: 12px;
+  color: var(--bs-primary);
+}
+
+.input-group-text-right {
+  border: unset;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bs-primary);
+  opacity: 1 !important;
+  line-height: 1;
+}
+
+/* Centrar perfectamente el contenido del botón/icono */
+.input-group-text-right > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.input-group-text-icon {
+  padding-left: 2.7rem;
+}
+
+.input-group:has(.input-group-text) .input-group-text {
+  padding-left: 1rem;
+}
+
+/* Para inputs de texto normales, crear un botón de limpiar personalizado */
+.form-control:not([type="search"]) {
+  position: relative;
+}
+
+.form-control:not([type="search"])::-webkit-search-cancel-button {
+  display: none;
+}
+
+/* Botón de limpiar personalizado para inputs de texto */
+.form-control:not([type="search"]):not(:placeholder-shown)::after {
+  content: '✕';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: var(--bs-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.form-control:not([type="search"]):not(:placeholder-shown):focus::after {
+  opacity: 1;
+}
+
+/* Hover effect para el botón de limpiar */
+.form-control:not([type="search"]):not(:placeholder-shown):hover::after {
+  opacity: 1;
+}

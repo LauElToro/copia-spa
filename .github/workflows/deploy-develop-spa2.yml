@@ -1,0 +1,64 @@
+name: Deploy Liberty-Club-SPA V2
+on:
+  push:
+    branches: [ spa-v2 ] 
+
+env:
+  PROJECT_NAME: "Liberty-Club-SPA-V2"
+  ENVIRONMENT: "test"
+
+jobs:
+  deploy:
+    concurrency:
+      group: droplet-preprod-deploy
+      cancel-in-progress: false
+    runs-on: ubuntu-latest
+    environment: test  
+    steps:
+    - name: Deploy to Server
+      id: deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.DROPLET_IP }}
+        command_timeout: 90m
+        username: ${{ secrets.DROPLET_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        debug: false    # Muestra más información
+        script: |
+          set -e
+          set -o pipefail
+          
+          echo "Starting deployment..."
+          echo "Changing to directory: /var/docker/Test/liberty-club-spa/src"
+          cd /var/docker/Test/liberty-club-spa/src
+          
+          echo "Checking out develop branch..."
+          git checkout develop
+          git stash || true
+          
+          echo "Configuring git pull behavior..."
+          git config pull.rebase false
+          
+          echo "Pulling latest changes..."
+          git pull origin develop 
+          cd /var/docker/Test/liberty-club-spa
+          echo "🛑 Stopping containers (keeping images for cache)..."
+          docker compose down --remove-orphans || true
+          echo "🧹 Liberando espacio en disco..."
+          docker system prune -af || true
+          echo "🔨 Building Docker image (BuildKit + cache)..."
+          export DOCKER_BUILDKIT=1
+          if ! docker compose build; then
+          echo "❌ ERROR: Docker build failed!"
+          exit 1
+          fi
+          
+          echo "✅ Build successful!"
+          
+          echo "🚀 Starting containers..."
+          if ! docker compose up -d --remove-orphans; then
+          echo "❌ ERROR: Failed to start containers!"
+          exit 1
+          fi
+          
+          echo "✅ Deploy Finalizado !!!"

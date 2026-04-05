@@ -1,0 +1,156 @@
+/* Voice Toggle Button - Learn More Button Style */
+
+.voice-toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 52px;
+}
+
+.voice-icon {
+  width: 20px;
+  height: 20px;
+  color: #94a3b8;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* Toggle Switch */
+.voice-switch {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.voice-switch-track {
+  width: 44px;
+  height: 24px;
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.voice-switch-thumb {
+  width: 18px;
+  height: 18px;
+  background: #94a3b8;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Active State */
+.voice-toggle-button.active {
+  border-color: rgba(41, 196, 128, 0.4);
+  border-left: none;
+  background: rgba(41, 196, 128, 0.05);
+}
+
+.voice-toggle-button.active .voice-icon {
+  color: #29C480;
+}
+
+.voice-toggle-button.active .voice-switch-track {
+  background: rgba(41, 196, 128, 0.3);
+  border-color: rgba(41, 196, 128, 0.5);
+}
+
+.voice-toggle-button.active .voice-switch-thumb {
+  background: #29C480;
+  left: 22px;
+  box-shadow: 0 2px 8px rgba(41, 196, 128, 0.4);
+}
+
+/* Listening State */
+.voice-toggle-button.listening {
+  border-color: rgba(41, 196, 128, 0.6);
+  border-left: none;
+  background: rgba(41, 196, 128, 0.1);
+  box-shadow: 0 0 20px rgba(41, 196, 128, 0.2);
+}
+
+.voice-toggle-button.listening .voice-switch-thumb {
+  animation: pulse-thumb 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-thumb {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 2px 8px rgba(41, 196, 128, 0.4);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 2px 12px rgba(41, 196, 128, 0.6);
+  }
+}
+
+/* Listening Indicator */
+.voice-listening-indicator {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  position: absolute;
+  right: -40px;
+}
+
+.voice-pulse {
+  width: 4px;
+  height: 12px;
+  background: #29C480;
+  border-radius: 2px;
+  animation: voice-wave 1s ease-in-out infinite;
+}
+
+.voice-pulse:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.voice-pulse:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.voice-pulse:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes voice-wave {
+  0%, 100% {
+    height: 12px;
+    opacity: 0.6;
+  }
+  50% {
+    height: 24px;
+    opacity: 1;
+  }
+}
+
+/* Hover */
+.voice-toggle-button:hover:not(.active) {
+  border-color: rgba(148, 163, 184, 0.5);
+  border-left: none;
+  background: rgba(148, 163, 184, 0.03);
+}
+
+.voice-toggle-button:hover:not(.active) .voice-icon {
+  color: #cbd5e1;
+}
+
+.voice-toggle-button.active:hover {
+  border-color: rgba(41, 196, 128, 0.6);
+  border-left: none;
+  background: rgba(41, 196, 128, 0.08);
+}
+

@@ -1,0 +1,38 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Variables de entorno para build de Next.js - PRODUCCIÓN
+        - NEXT_PUBLIC_MS_AUTH_URL=https://auth.libertyclub.io
+        - NEXT_PUBLIC_MS_ACCOUNT_URL=https://account.libertyclub.io
+        - NEXT_PUBLIC_MS_PLANS_URL=https://plans.libertyclub.io
+        - NEXT_PUBLIC_MS_STORAGE_URL=https://storage.libertyclub.io
+        - NEXT_PUBLIC_MS_TRANSACTIONS_URL=https://transactions.libertyclub.io
+        - NEXT_PUBLIC_MS_PRODUCTS_URL=https://products.libertyclub.io
+        - NEXT_PUBLIC_MS_NOTIFICATIONS_URL=https://notifications.libertyclub.io
+        - NEXT_PUBLIC_MS_ROLES_PERMISSIONS_URL=https://roles-permissions.libertyclub.io
+        - NEXT_PUBLIC_MS_QUESTIONS_ANSWERS_URL=https://questions-answers.libertyclub.io
+        - NEXT_PUBLIC_MS_STORES_URL=https://stores.libertyclub.io
+        - NEXT_PUBLIC_MS_WALLETS_URL=https://wallets.libertyclub.io
+        - NEXT_PUBLIC_MS_PAYMENTS_URL=https://payments.libertyclub.io
+        - NEXT_PUBLIC_MS_SHIPPINGS_URL=https://shippings.libertyclub.io
+        - NEXT_PUBLIC_WSS_URL=wss://wss.libertyclub.io
+        - NEXT_PUBLIC_LIBIA_API_URL=https://libia.libertyclub.io
+        - NEXTAUTH_URL=https://spa-test.libertyclub.io
+        - NEXTAUTH_SECRET=liberty_club_nextauth_secret_key_2024_very_long_and_secure_string
+    container_name: liberty-club-spa
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - liberty-club-network
+
+networks:
+  liberty-club-network:
+    driver: bridge
+
+

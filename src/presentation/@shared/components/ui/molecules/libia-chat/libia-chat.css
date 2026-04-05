@@ -1,0 +1,1261 @@
+/* LibiaChat Component Styles - Modern Blockchain Theme */
+
+/* Sequential Fade In Up Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:root {
+  --libia-brand: #00ff88;
+  --libia-brand-dark: #00cc6a;
+  --libia-brand-rgba25: rgba(0, 255, 136, 0.25);
+  --libia-brand-rgba10: rgba(0, 255, 136, 0.1);
+  --libia-bg: #0a0a0a;
+  --libia-bg-lighter: #141414;
+  --libia-header: #0f0f0f;
+  --libia-border: rgba(41, 196, 128, 0.2);
+  --libia-border-bright: rgba(0, 255, 136, 0.4);
+  --libia-text: #ffffff;
+  --libia-text-secondary: rgba(255, 255, 255, 0.7);
+  --libia-text-muted: rgba(255, 255, 255, 0.5);
+  --libia-user-bubble: linear-gradient(135deg, #00ff88 0%, #00aaff 100%);
+  --libia-user-text: #0a0a0a;
+  --libia-bot-bubble: #1a1a1a;
+  --libia-bot-text: #ffffff;
+  --libia-error: #ff0088;
+  --libia-shadow: rgba(0, 0, 0, 0.5);
+  --libia-shadow-glow: rgba(0, 255, 136, 0.3);
+  --libia-hover: rgba(0, 255, 136, 0.1);
+  --libia-radius: 0.625rem;
+}
+
+/* Launcher Button */
+.libia-launcher {
+  position: fixed;
+  bottom: 24px;
+  z-index: 9999;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--libia-brand) 0%, #00aaff 100%);
+  border: 2px solid var(--libia-border-bright);
+  box-shadow: 
+    0 8px 24px var(--libia-shadow),
+    0 0 20px var(--libia-shadow-glow),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  cursor: pointer !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
+  animation: pulse-glow 3s ease-in-out infinite;
+  overflow: visible;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 
+      0 8px 24px var(--libia-shadow),
+      0 0 20px var(--libia-shadow-glow),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 8px 24px var(--libia-shadow),
+      0 0 30px var(--libia-shadow-glow),
+      0 0 40px rgba(0, 170, 255, 0.2),
+      inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.libia-launcher:hover:not(.disabled) {
+  transform: scale(1.15) translateY(-4px) rotate(8deg);
+  box-shadow: 
+    0 16px 48px var(--libia-shadow),
+    0 0 60px var(--libia-shadow-glow),
+    0 0 80px rgba(0, 170, 255, 0.5),
+    0 0 120px rgba(255, 0, 136, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  animation: hover-pulse 0.8s ease-in-out infinite, hover-rotate 2s ease-in-out infinite;
+}
+
+@keyframes hover-pulse {
+  0%, 100% {
+    filter: brightness(1.1) saturate(1.2);
+  }
+  50% {
+    filter: brightness(1.3) saturate(1.4);
+  }
+}
+
+@keyframes hover-rotate {
+  0%, 100% {
+    transform: scale(1.15) translateY(-4px) rotate(8deg);
+  }
+  25% {
+    transform: scale(1.18) translateY(-6px) rotate(10deg);
+  }
+  50% {
+    transform: scale(1.15) translateY(-4px) rotate(6deg);
+  }
+  75% {
+    transform: scale(1.18) translateY(-6px) rotate(10deg);
+  }
+}
+
+/* Efecto de ring expansion en hover */
+.libia-launcher:hover:not(.disabled)::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid var(--libia-brand);
+  transform: translate(-50%, -50%);
+  animation: ring-expand 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes ring-expand {
+  0% {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-width: 2px;
+  }
+  5% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.2;
+  }
+  95% {
+    width: 180%;
+    height: 180%;
+    opacity: 0;
+    border-width: 1px;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-width: 2px;
+  }
+}
+
+/* Efecto de partículas en hover */
+.libia-launcher:hover:not(.disabled)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    circle at center,
+    transparent 40%,
+    var(--libia-brand) 40%,
+    var(--libia-brand) 42%,
+    transparent 42%
+  );
+  transform: translate(-50%, -50%) rotate(0deg);
+  animation: particle-rotate 3s linear infinite;
+  opacity: 0.3;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+@keyframes particle-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.libia-launcher.open {
+  transform: scale(0.92);
+  box-shadow: 
+    0 4px 16px var(--libia-shadow),
+    0 0 15px var(--libia-shadow-glow),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.libia-launcher.disabled {
+  background: linear-gradient(135deg, #666666 0%, #999999 100%);
+  border-color: rgba(150, 150, 150, 0.3);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  cursor: not-allowed;
+  opacity: 0.7;
+  animation: none;
+  filter: grayscale(100%);
+}
+
+.libia-launcher.disabled:hover {
+  transform: scale(1);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(150, 150, 150, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.libia-launcher-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none !important;
+}
+
+.libia-launcher:hover:not(.disabled) .libia-launcher-avatar {
+  filter: drop-shadow(0 4px 16px rgba(0, 255, 136, 0.6)) 
+          drop-shadow(0 0 24px rgba(0, 170, 255, 0.4));
+  transform: scale(1.05);
+}
+
+.libia-launcher-fallback {
+  display: none;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  font-size: 28px;
+  font-weight: 800;
+  font-family: 'Oxanium', sans-serif;
+  color: var(--libia-bg);
+  background: var(--libia-brand);
+  border-radius: 50%;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.libia-launcher-status {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  width: 16px;
+  height: 16px;
+  background: var(--libia-brand);
+  border: 3px solid var(--libia-bg);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--libia-brand), 0 2px 8px rgba(0, 0, 0, 0.3);
+  animation: pulse-status 2s ease-in-out infinite;
+}
+
+@keyframes pulse-status {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
+/* Modal Overlay - Fullscreen with Backdrop Blur */
+.libia-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  animation: backdropFadeIn 300ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes backdropFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Modal Content - GenAI Style Centered */
+.libia-modal-content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: modalSlideIn 400ms cubic-bezier(0.34, 1.56, 0.64, 1) 150ms both;
+  padding: 40px 20px;
+}
+
+@keyframes modalSlideIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Centered Container */
+.libia-modal-center {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Black Card Container - Similar to sellers plan detail */
+.libia-modal-card {
+  width: 100%;
+  background-color: #0c0c0c;
+  border-radius: 16px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: none;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .libia-modal-card {
+    padding: 40px;
+  }
+}
+
+/* Hero Section - GenAI Style (Original) */
+.libia-modal-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Container for subtitle and hint to control spacing */
+.libia-modal-subtitle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.libia-modal-subtitle-container .libia-modal-subtitle {
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+  padding: 0 !important;
+}
+
+.libia-modal-subtitle-container .libia-modal-ai-hint {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+}
+
+.libia-modal-title {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 800;
+  font-family: 'Oxanium', sans-serif;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  /* Sequential Animation */
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.1s;
+}
+
+.libia-modal-title::after {
+  content: ' IA';
+  background: linear-gradient(90deg, var(--libia-brand) 0%, #00aaff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  text-shadow: 0 0 40px rgba(0, 255, 136, 0.4);
+}
+
+/* AI Icon inside title - unified gradient */
+.libia-title-icon {
+  position: absolute;
+  top: -6px;
+  right: -45px;
+  width: 36px;
+  height: 36px;
+  filter: drop-shadow(0 0 12px rgba(0, 255, 136, 0.6)) 
+          drop-shadow(0 0 20px rgba(0, 170, 255, 0.4));
+  animation: ai-pulse 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+@keyframes ai-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08) rotate(2deg);
+  }
+}
+
+.libia-modal-subtitle {
+  margin: 0 !important;
+  margin-bottom: 5px !important;
+  padding: 0 !important;
+  font-size: 18px;
+  font-family: 'Rajdhani', sans-serif;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.2 !important;
+  letter-spacing: 0.01em;
+  max-width: 600px;
+  /* Sequential Animation */
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.25s;
+}
+
+.libia-modal-ai-hint {
+  margin: 0 !important;
+  margin-top: 0 !important;
+  padding: 0 !important;
+  font-size: 14px;
+  font-family: 'Geist', 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #34d399;
+  line-height: 1.2 !important;
+  font-weight: 500;
+  opacity: 0.9;
+  /* Sequential Animation */
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.35s;
+}
+
+.libia-voice-hint {
+  color: #29C480;
+  font-weight: 700;
+  font-size: 20px;
+  animation: pulse-hint 2s ease-in-out infinite;
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@keyframes pulse-hint {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Close button styles removed - now using Material-UI IconButton like sellers modal */
+
+
+/* Version Badge - Bottom Right */
+.libia-version-badge {
+  position: fixed !important;
+  bottom: 32px !important;
+  right: 32px !important;
+  font-size: 13px;
+  font-family: 'Geist Mono', monospace;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.35);
+  z-index: 10001 !important;
+  user-select: none;
+  letter-spacing: 0.05em;
+}
+
+.libia-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.libia-avatar-wrap {
+  position: relative;
+}
+
+.libia-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--libia-border-bright);
+  box-shadow: 0 0 16px var(--libia-shadow-glow);
+}
+
+.libia-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--libia-brand);
+  border: 2px solid var(--libia-bg);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--libia-brand);
+  animation: pulse-status 2s ease-in-out infinite;
+}
+
+.libia-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.libia-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: 'Oxanium', sans-serif;
+  background: linear-gradient(90deg, var(--libia-brand) 0%, #00aaff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 20px var(--libia-shadow-glow);
+}
+
+.libia-subtitle {
+  margin: 0;
+  font-size: 13px;
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--libia-text-secondary);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.libia-close {
+  background: transparent;
+  border: 1px solid transparent;
+  width: 36px;
+  height: 36px;
+  border-radius: calc(var(--libia-radius) * 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--libia-text-muted);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
+}
+
+.libia-close:hover {
+  background: var(--libia-hover);
+  border-color: var(--libia-border-bright);
+  color: var(--libia-brand);
+  transform: rotate(90deg);
+  box-shadow: 0 0 16px var(--libia-brand-rgba25);
+}
+
+/* Messages Area - Shows conversation history */
+.libia-modal-messages {
+  width: 100%;
+  max-width: 100%;
+  max-height: 400px;
+  min-height: 200px;
+  overflow-y: auto;
+  overflow-x: visible;
+  background: transparent;
+  border-radius: 0;
+  border: none;
+  backdrop-filter: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.libia-modal-messages .chat-messages-container {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
+/* Message Rows - Legacy support */
+.libia-row {
+  display: flex;
+  gap: 8px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.libia-row.system {
+  justify-content: center;
+}
+
+/* Message Bubbles */
+.bubble {
+  max-width: 80%;
+  padding: 14px 18px;
+  border-radius: var(--libia-radius);
+  word-wrap: break-word;
+  line-height: 1.5;
+  font-size: 14px;
+  font-family: 'Rajdhani', sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.user-bubble {
+  background: var(--libia-user-bubble);
+  color: var(--libia-user-text);
+  border-bottom-right-radius: 4px;
+  font-weight: 500;
+  border: 1px solid var(--libia-border-bright);
+  box-shadow: 
+    0 4px 12px rgba(0, 255, 136, 0.2),
+    0 0 20px rgba(0, 255, 136, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.bot-bubble {
+  background: var(--libia-bot-bubble);
+  color: var(--libia-bot-text);
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--libia-border);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.03);
+}
+
+.bot-bubble p {
+  margin: 0 0 8px 0;
+}
+
+.bot-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.bot-bubble ul,
+.bot-bubble ol {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.bot-bubble li {
+  margin: 4px 0;
+}
+
+.bot-bubble code {
+  background: rgba(0, 255, 136, 0.1);
+  padding: 3px 8px;
+  border-radius: calc(var(--libia-radius) * 0.5);
+  border: 1px solid var(--libia-border);
+  font-family: 'Geist Mono', monospace;
+  font-size: 13px;
+  color: var(--libia-brand);
+}
+
+.bot-bubble a {
+  color: var(--libia-brand);
+  text-decoration: none;
+  border-bottom: 1px solid var(--libia-border-bright);
+  transition: all 0.2s ease;
+}
+
+.bot-bubble a:hover {
+  color: #00aaff;
+  border-bottom-color: #00aaff;
+  text-shadow: 0 0 8px rgba(0, 170, 255, 0.5);
+}
+
+.system-note {
+  font-size: 12px;
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--libia-text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 6px 16px;
+  background: rgba(0, 255, 136, 0.05);
+  border: 1px solid var(--libia-border);
+  border-radius: calc(var(--libia-radius) * 0.8);
+}
+
+/* Loading Dots */
+.dots {
+  display: inline-block;
+  animation: pulse 1.4s ease-in-out infinite;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Input Section - GenAI Style */
+.libia-modal-input-section {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Input Controls - Input + Voice Button */
+.libia-input-controls {
+  display: flex;
+  gap: 0;
+  width: 100%;
+  align-items: center;
+  /* Sequential Animation */
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.55s;
+  /* Allow glow effects to extend */
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
+/* Quick Replies Pills - Centered */
+.libia-modal-quick-replies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+  /* Sequential Animation */
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.4s;
+}
+
+/* Quick Replies Pills - Product Badge Style */
+.libia-quick-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(148, 163, 184, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.1);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  text-transform: none;
+}
+
+.libia-quick-pill:hover:not(:disabled) {
+  background: rgba(41, 196, 128, 0.08);
+  border-color: rgba(41, 196, 128, 0.2);
+  color: #29C480;
+}
+
+.libia-quick-pill:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.libia-quick-btn {
+  padding: 10px 16px;
+  background: var(--libia-bg-lighter);
+  border: 1px solid var(--libia-border);
+  border-radius: calc(var(--libia-radius) * 1.5);
+  font-size: 13px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 500;
+  color: var(--libia-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+
+.libia-quick-btn:hover:not(:disabled) {
+  background: var(--libia-brand-rgba10);
+  border-color: var(--libia-border-bright);
+  color: var(--libia-brand);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 4px 12px var(--libia-brand-rgba25),
+    0 0 16px rgba(0, 255, 136, 0.1);
+}
+
+.libia-quick-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Toolbar */
+.libia-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: var(--libia-header);
+  border-top: 1px solid var(--libia-border);
+}
+
+/* Input Bar - GenAI Style */
+.libia-modal-input-bar {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  align-items: center;
+}
+
+.libia-modal-input {
+  flex: 1;
+  padding: 16px;
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.libia-modal-input::placeholder {
+  color: #9ca3af;
+  opacity: 0.7;
+}
+
+.libia-modal-input:hover {
+  border-color: #22c55e;
+}
+
+.libia-modal-input:focus {
+  background: #1f2937;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+}
+
+.libia-modal-send {
+  padding: 12px 32px;
+  background: #29C480;
+  color: #1e293b;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+  text-transform: none;
+}
+
+.libia-send-icon {
+  font-size: 16px;
+  display: inline-block;
+}
+
+.libia-modal-send:hover:not(:disabled) {
+  background: #ffffff;
+  color: #000000;
+}
+
+.libia-modal-send:disabled {
+  background: #29C480;
+  color: #1e293b;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.libia-input {
+  flex: 1;
+  padding: 12px 18px;
+  background: var(--libia-bg-lighter);
+  border: 1px solid var(--libia-border);
+  border-radius: calc(var(--libia-radius) * 2);
+  font-size: 14px;
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--libia-text);
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.libia-input::placeholder {
+  color: var(--libia-text-muted);
+}
+
+.libia-input:focus {
+  border-color: var(--libia-border-bright);
+  background: var(--libia-bg);
+  box-shadow: 
+    0 0 0 3px var(--libia-brand-rgba25),
+    0 0 20px rgba(0, 255, 136, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.libia-input:disabled {
+  background: var(--libia-bg);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.libia-send {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, var(--libia-brand) 0%, #00aaff 100%);
+  color: var(--libia-bg);
+  border: 1px solid var(--libia-border-bright);
+  border-radius: calc(var(--libia-radius) * 2);
+  font-size: 14px;
+  font-family: 'Oxanium', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+  box-shadow: 
+    0 4px 12px rgba(0, 255, 136, 0.3),
+    0 0 20px rgba(0, 255, 136, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.libia-send:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 20px rgba(0, 255, 136, 0.4),
+    0 0 30px rgba(0, 255, 136, 0.3),
+    0 0 40px rgba(0, 170, 255, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.libia-send:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.libia-send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .libia-wrapper {
+    width: calc(100vw - 32px);
+    height: calc(100vh - 100px);
+    bottom: 16px;
+    border-radius: calc(var(--libia-radius) * 1.2);
+  }
+
+  .libia-launcher {
+    bottom: 16px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .libia-header {
+    padding: 16px;
+  }
+
+  .libia-body {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .bubble {
+    max-width: 85%;
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  .libia-quick {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .libia-quick-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .libia-inputbar {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+
+  .libia-input {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .libia-send {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+}
+
+/* Reset Chat Link */
+.libia-reset-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0 0 0;
+  /* Sequential Animation */
+  animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.7s;
+}
+
+.libia-reset-link {
+  background: none;
+  border: none;
+  color: #29C480;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.7;
+}
+
+.libia-reset-icon {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.libia-reset-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+.libia-reset-link:hover:not(:disabled) {
+  opacity: 1;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.libia-reset-link:hover:not(:disabled) .libia-reset-icon {
+  color: #ffffff;
+}
+
+.libia-reset-link:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Configuration View Styles */
+.libia-config-view {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 8px;
+  width: 100%;
+}
+
+.libia-config-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #34d399;
+  font-family: 'Geist', 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.2;
+}
+
+.libia-config-switch-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.libia-config-switch-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 16px;
+}
+
+.libia-config-switch-label.libia-config-switch-disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.libia-config-switch-text {
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-family: 'Geist', 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.libia-config-switch-label.libia-config-switch-disabled .libia-config-switch-text {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.libia-config-switch-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.libia-config-switch {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.libia-config-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: 0.3s;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.libia-config-switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #ffffff;
+  transition: 0.3s;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.libia-config-switch:checked + .libia-config-switch-slider {
+  background-color: #34d399;
+  border-color: #34d399;
+}
+
+.libia-config-switch:checked + .libia-config-switch-slider:before {
+  transform: translateX(20px);
+}
+
+.libia-config-switch:disabled + .libia-config-switch-slider {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.libia-config-switch:disabled:checked + .libia-config-switch-slider {
+  background-color: rgba(52, 211, 153, 0.3);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+.libia-config-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding-top: 16px;
+  flex-direction: row;
+}
+
+.libia-config-btn {
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Geist', 'Geist Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, all 0.3s ease;
+  border: none;
+  white-space: nowrap;
+  text-transform: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.libia-config-btn-primary {
+  background-color: #29C480;
+  color: #1e293b;
+  border: none;
+}
+
+.libia-config-btn-primary:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.libia-config-btn-secondary {
+  background-color: transparent;
+  color: #29C480;
+  border: 1px solid #29C480;
+  box-shadow: none;
+  transition: none;
+}
+
+.libia-config-btn-secondary:hover {
+  border-color: #4dd99a;
+  box-shadow: none;
+}
+

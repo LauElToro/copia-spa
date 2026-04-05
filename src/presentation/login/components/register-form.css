@@ -1,0 +1,60 @@
+.login-page {
+  height: 700px; 
+  width: 1300px;
+  align-items: center;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  border-radius: 16px;
+}
+
+.login-background {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/images/landing/fondo.png');
+  background-size: 90%;
+  background-repeat: no-repeat;
+  
+}
+
+.custom-select {
+  border-color: #3a7a1c;
+  background-color: #fff;
+  color: #000;
+}
+
+
+
+.login-image-container {
+  border-radius: 16px;
+  width: auto;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+    
+}
+
+.login-image-container img {
+  
+  max-width: 60%;
+  max-height: 60%;
+}
+
+
+.register-button-groups {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem; /* espacio entre los botones */
+  flex-wrap: wrap; /* por si en móvil necesitás que se apilen */
+}
+
+.register-button-groups a {
+  text-decoration: none;
+}
+
+.phone-metadata-input {
+  flex: 0 0 25%;
+  min-width: 120px;
+}

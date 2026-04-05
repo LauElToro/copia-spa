@@ -1,0 +1,37 @@
+/* Estilos para la página de tienda individual - Consistente con el resto de la aplicación */
+
+.card-product {
+  background: linear-gradient(92.35deg, #1E2D26 0%, #131217 99.06%);
+  padding: 20px;
+}
+
+/* Asegurar que el banner y logo se vean bien en todos los tamaños */
+.store-banner-container {
+  position: relative;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.store-logo-avatar {
+  position: absolute;
+  z-index: 2;
+  border: 4px solid #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .store-logo-avatar {
+    width: 80px !important;
+    height: 80px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .store-logo-avatar {
+    width: 120px !important;
+    height: 120px !important;
+  }
+}
+

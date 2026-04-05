@@ -1,0 +1,10 @@
+.add-to-cart-auth-banner {
+  margin-top: 24px;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .add-to-cart-auth-banner {
+    margin-top: 16px;
+  }
+}

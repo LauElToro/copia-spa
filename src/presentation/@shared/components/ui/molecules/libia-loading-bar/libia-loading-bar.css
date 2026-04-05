@@ -1,0 +1,138 @@
+/* Libia Loading Bar - Modern Top Loading Indicator */
+
+.libia-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 10000;
+  pointer-events: none;
+  animation: loadingBarFadeIn 0.3s ease-out;
+}
+
+@keyframes loadingBarFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.libia-loading-bar-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.libia-loading-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00ff88 0%, #00aaff 50%, #00ff88 100%);
+  background-size: 200% 100%;
+  transform: translateX(-50%);
+  animation: loadingBarProgress 2s ease-in-out infinite,
+             loadingBarGradient 3s linear infinite;
+  box-shadow: 
+    0 0 10px rgba(0, 255, 136, 0.6),
+    0 0 20px rgba(0, 170, 255, 0.4);
+}
+
+@keyframes loadingBarProgress {
+  0% {
+    width: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  50% {
+    width: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  100% {
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes loadingBarGradient {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.libia-loading-bar-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: loadingBarShimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingBarShimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Pulse effect for the bar */
+.libia-loading-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #00ff88 0%, #00aaff 100%);
+  opacity: 0.3;
+  animation: loadingBarPulse 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes loadingBarPulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .libia-loading-bar {
+    height: 2px;
+  }
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,265 @@
+/* Chat Bubble - Ultra Modern Clean Design */
+
+.chat-bubble-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4px;
+  margin-top: 0;
+}
+
+.chat-bubble-container.user {
+  animation: user-bubble-slide-in 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.chat-bubble-container.assistant {
+  animation: assistant-bubble-slide-in 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes bubble-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes user-bubble-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) translateX(-15px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+}
+
+@keyframes assistant-bubble-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) translateX(15px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+}
+
+.chat-bubble-container.user {
+  align-items: flex-end;
+}
+
+.chat-bubble-container.assistant {
+  align-items: flex-start;
+}
+
+/* Bubble Styles - Ultra Clean & Modern */
+.chat-bubble {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  position: relative;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+}
+
+.chat-bubble-message {
+  display: block;
+  color: inherit;
+}
+
+.chat-bubble-timestamp {
+  display: block;
+  font-size: 10px;
+  opacity: 0.5;
+  font-weight: 400;
+  margin-top: 2px;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+  letter-spacing: 0.01em;
+}
+
+/* Assistant (Libia) Bubble - Clean card style */
+.chat-bubble.assistant {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 0 0 0.5px rgba(255, 255, 255, 0.05) inset;
+  align-items: flex-start;
+  backdrop-filter: blur(20px);
+}
+
+.chat-bubble.assistant .chat-bubble-timestamp {
+  color: rgba(255, 255, 255, 0.4);
+  align-self: flex-end;
+}
+
+.chat-bubble.assistant:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    0 0 0 0.5px rgba(255, 255, 255, 0.08) inset;
+}
+
+/* User Bubble - Same color as input with transparency */
+.chat-bubble.user {
+  background: rgba(31, 41, 55, 0.8);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 0 0 0.5px rgba(255, 255, 255, 0.05) inset;
+  align-items: flex-end;
+  backdrop-filter: blur(20px);
+  font-weight: 400;
+}
+
+.chat-bubble.user .chat-bubble-timestamp {
+  color: rgba(255, 255, 255, 0.45);
+  align-self: flex-start;
+}
+
+.chat-bubble.user:hover {
+  background: rgba(31, 41, 55, 0.9);
+  border-color: rgba(55, 65, 81, 1);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.25),
+    0 0 0 0.5px rgba(255, 255, 255, 0.08) inset;
+}
+
+/* Text Styling - Clean & Modern */
+.chat-bubble p {
+  margin: 0 0 4px 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.chat-bubble p:last-child {
+  margin-bottom: 0;
+}
+
+.chat-bubble a {
+  color: #29C480;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(41, 196, 128, 0.4);
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.chat-bubble a:hover {
+  color: #00ff88;
+  border-bottom-color: #00ff88;
+}
+
+.chat-bubble.user a {
+  color: #00ff88;
+  border-bottom-color: rgba(0, 255, 136, 0.5);
+}
+
+.chat-bubble.user a:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+/* Code blocks in bubbles - Clean styling */
+.chat-bubble code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', 'Roboto Mono', monospace;
+  font-size: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.chat-bubble.user code {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(0, 255, 136, 0.15);
+  color: rgba(0, 255, 136, 0.95);
+}
+
+.chat-bubble pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 14px;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin: 12px 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chat-bubble.user pre {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(0, 255, 136, 0.15);
+}
+
+.chat-bubble pre code {
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: inherit;
+}
+
+/* Imágenes de Libia (productos S3) - asegurar que carguen y se vean bien */
+.chat-bubble-message img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 8px 0;
+  object-fit: cover;
+}
+
+/* Error messages styling - Clean & Subtle */
+.chat-bubble.assistant .chat-bubble-message :global(p[style*="color:var(--libia-error)"]) {
+  color: rgba(255, 107, 157, 0.9) !important;
+  background: rgba(255, 107, 157, 0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 107, 157, 0.15);
+  margin: 6px 0;
+}
+
+.chat-bubble.assistant .chat-bubble-message :global(small) {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  opacity: 0.7;
+  color: rgba(255, 107, 157, 0.8);
+  font-weight: 400;
+}
+
+/* Responsive - Mobile optimized */
+@media (max-width: 768px) {
+  .chat-bubble-container {
+    margin-bottom: 3px;
+  }
+
+  .chat-bubble {
+    max-width: 80%;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+
+  .chat-bubble-timestamp {
+    font-size: 9px;
+  }
+}
+

@@ -1,0 +1,155 @@
+{
+  "family": "spa-liberty",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::746669212941:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::746669212941:role/ecsTaskRole",
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "746669212941.dkr.ecr.us-east-2.amazonaws.com/spa-liberty:latest",
+      "portMappings": [
+        {
+          "containerPort": 3000,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "secrets": [
+        {
+          "name": "NEXT_PUBLIC_SERVICE_SPA_AUTH_PASSWORD",
+          "valueFrom": "arn:aws:ssm:us-east-2:746669212941:parameter/prod-spa-auth-password"
+        },
+        {
+          "name": "NEXTAUTH_SECRET",
+          "valueFrom": "arn:aws:ssm:us-east-2:746669212941:parameter/prod-nextauth-secret"
+        },
+        {
+          "name": "NEW_RELIC_LICENSE_KEY",
+          "valueFrom": "arn:aws:ssm:us-east-2:746669212941:parameter/prod-new-relic-license-key"
+        }
+      ],
+      "environment": [
+        {
+          "name": "NODE_ENV",
+          "value": "production"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_AUTH_URL",
+          "value": "https://api.libertyclub.io/auth"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_ACCOUNT_URL",
+          "value": "https://api.libertyclub.io/accounts"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_PLANS_URL",
+          "value": "https://api.libertyclub.io/plans"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_STORAGE_URL",
+          "value": "https://api.libertyclub.io/storages"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_TRANSACTIONS_URL",
+          "value": "https://api.libertyclub.io/transactions"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_PRODUCTS_URL",
+          "value": "https://api.libertyclub.io/products"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_NOTIFICATIONS_URL",
+          "value": "https://api.libertyclub.io/notifications"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_ROLES_PERMISSIONS_URL",
+          "value": "https://api.libertyclub.io/roles-permissions"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_QUESTIONS_ANSWERS_URL",
+          "value": "https://api.libertyclub.io/questions"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_STORES_URL",
+          "value": "https://api.libertyclub.io/stores"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_WALLETS_URL",
+          "value": "https://api.libertyclub.io/wallets"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_PAYMENTS_URL",
+          "value": "https://api.libertyclub.io/payments"
+        },
+        {
+          "name": "NEXT_PUBLIC_MS_SHIPPINGS_URL",
+          "value": "https://api.libertyclub.io/shippings"
+        },
+        {
+          "name": "NEXT_PUBLIC_WSS_URL",
+          "value": "https://wss.libertyclub.io"
+        },
+        {
+          "name": "NEXT_PUBLIC_SERVICE_SPA_AUTH_EMAIL",
+          "value": "service-spa@libertyclub.io"
+        },
+        {
+          "name": "NEXT_PUBLIC_CONTACT_EMAIL",
+          "value": "contacto@libertyclub.io"
+        },
+        {
+          "name": "NEXTAUTH_URL",
+          "value": "https://spa.libertyclub.io"
+        },
+        {
+          "name": "NEXT_PUBLIC_API_PREFIX",
+          "value": "/"
+        },
+        {
+          "name": "NEXT_PUBLIC_ALLOWED_IMAGE_FORMATS",
+          "value": "image/jpeg,image/png"
+        },
+        {
+          "name": "NEXT_PUBLIC_MAX_FILE_SIZE",
+          "value": "2097152"
+        },
+        {
+          "name": "NEXT_PUBLIC_MAX_PHOTOS_PER_PRODUCT",
+          "value": "10"
+        },
+        {
+          "name": "NEW_RELIC_APP_NAME",
+          "value": "spa-liberty"
+        },
+        {
+          "name": "NEW_RELIC_LOG_LEVEL",
+          "value": "info"
+        },
+        {
+          "name": "NEW_RELIC_ENV",
+          "value": "test"
+        },
+        {
+          "name": "NEW_RELIC_TEAM",
+          "value": "core"
+        },
+        {
+          "name": "NEW_RELIC_LABELS",
+          "value": "env:test;team:core"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/spa-liberty",
+          "awslogs-region": "us-east-2",
+          "awslogs-stream-prefix": "ecs",
+          "awslogs-create-group": "true"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+/* AI Search Input - Input + Button attached like Website Input */
+
+.ai-search-input {
+  display: flex;
+  gap: 0;
+  width: 100%;
+  position: relative;
+  /* Allow glow effects to extend beyond container */
+  padding: 30px;
+  margin: -30px;
+}
+
+.ai-search-input-field {
+  flex: 1;
+  padding: 16px 20px;
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-right: none;
+  border-radius: 8px 0 0 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.3s ease;
+  min-height: 52px;
+  position: relative;
+  isolation: isolate;
+}
+
+.ai-search-input-field.full-width {
+  border-right: 1px solid #374151;
+  border-radius: 8px 0 0 8px;
+}
+
+.ai-search-input-field::placeholder {
+  color: #9ca3af;
+  opacity: 0.7;
+}
+
+.ai-search-input-field:hover {
+  border-color: #22c55e;
+}
+
+.ai-search-input-field:focus {
+  background: #1f2937;
+  border-color: #22c55e;
+  animation: input-shadow-glow 3s ease-in-out infinite;
+}
+
+/* Animated shadow glow for input field - reduced by 50% */
+@keyframes input-shadow-glow {
+  0% {
+    box-shadow: 
+      0 0 0 1px rgba(34, 197, 94, 0.2),
+      0 0 15px rgba(0, 255, 136, 0.25),
+      0 0 30px rgba(0, 255, 136, 0.2),
+      0 0 45px rgba(0, 255, 136, 0.1);
+  }
+  25% {
+    box-shadow: 
+      0 0 0 1px rgba(34, 197, 94, 0.2),
+      0 0 20px rgba(0, 170, 255, 0.3),
+      0 0 35px rgba(0, 170, 255, 0.25),
+      0 0 50px rgba(0, 170, 255, 0.15);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 1px rgba(34, 197, 94, 0.2),
+      0 0 17px rgba(41, 196, 128, 0.275),
+      0 0 32px rgba(41, 196, 128, 0.225),
+      0 0 47px rgba(41, 196, 128, 0.125);
+  }
+  75% {
+    box-shadow: 
+      0 0 0 1px rgba(34, 197, 94, 0.2),
+      0 0 20px rgba(0, 170, 255, 0.3),
+      0 0 35px rgba(0, 170, 255, 0.25),
+      0 0 50px rgba(0, 170, 255, 0.15);
+  }
+  100% {
+    box-shadow: 
+      0 0 0 1px rgba(34, 197, 94, 0.2),
+      0 0 15px rgba(0, 255, 136, 0.25),
+      0 0 30px rgba(0, 255, 136, 0.2),
+      0 0 45px rgba(0, 255, 136, 0.1);
+  }
+}
+
+.ai-search-input-button {
+  padding: 12px;
+  background: #29C480;
+  color: #1e293b;
+  border: none;
+  border-radius: 0;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+  text-transform: none;
+  min-height: 52px;
+  min-width: 52px;
+  flex-shrink: 0;
+}
+
+.ai-search-send-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.ai-search-icon {
+  font-size: 16px;
+  display: inline-block;
+}
+
+.ai-search-input-button:hover:not(:disabled) {
+  background: #ffffff;
+  color: #000000;
+}
+
+.ai-search-input-button:disabled {
+  background: #29C480;
+  color: #1e293b;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Focus state - highlight both input and button together */
+.ai-search-input:focus-within .ai-search-input-field {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.2);
+}
+

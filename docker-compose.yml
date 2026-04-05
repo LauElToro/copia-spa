@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Variables de entorno para build de Next.js
+        - NEXT_PUBLIC_MS_AUTH_URL=${NEXT_PUBLIC_MS_AUTH_URL:-http://localhost:3001}
+        - NEXT_PUBLIC_MS_ACCOUNT_URL=${NEXT_PUBLIC_MS_ACCOUNT_URL:-http://localhost:3002}
+        - NEXT_PUBLIC_MS_PLANS_URL=${NEXT_PUBLIC_MS_PLANS_URL:-http://localhost:3003}
+        - NEXT_PUBLIC_MS_STORAGE_URL=${NEXT_PUBLIC_MS_STORAGE_URL:-http://localhost:3004}
+        - NEXT_PUBLIC_MS_TRANSACTIONS_URL=${NEXT_PUBLIC_MS_TRANSACTIONS_URL:-http://localhost:3006}
+        - NEXT_PUBLIC_MS_PRODUCTS_URL=${NEXT_PUBLIC_MS_PRODUCTS_URL:-http://localhost:3007}
+        - NEXT_PUBLIC_MS_NOTIFICATIONS_URL=${NEXT_PUBLIC_MS_NOTIFICATIONS_URL:-http://localhost:3008}
+        - NEXT_PUBLIC_MS_ROLES_PERMISSIONS_URL=${NEXT_PUBLIC_MS_ROLES_PERMISSIONS_URL:-http://localhost:3009}
+        - NEXT_PUBLIC_MS_QUESTIONS_ANSWERS_URL=${NEXT_PUBLIC_MS_QUESTIONS_ANSWERS_URL:-http://localhost:3010}
+        - NEXT_PUBLIC_MS_STORES_URL=${NEXT_PUBLIC_MS_STORES_URL:-http://localhost:3011}
+        - NEXT_PUBLIC_MS_WALLETS_URL=${NEXT_PUBLIC_MS_WALLETS_URL:-http://localhost:3012}
+        - NEXT_PUBLIC_MS_PAYMENTS_URL=${NEXT_PUBLIC_MS_PAYMENTS_URL:-http://localhost:3013}
+        - NEXT_PUBLIC_MS_SHIPPINGS_URL=${NEXT_PUBLIC_MS_SHIPPINGS_URL:-http://localhost:3014}
+        - NEXT_PUBLIC_WSS_URL=${NEXT_PUBLIC_WSS_URL:-ws://localhost:3100}
+        - NEXT_PUBLIC_LIBIA_API_URL=${NEXT_PUBLIC_LIBIA_API_URL:-https://libia.libertyclub.io}
+        - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}
+        - NEXTAUTH_SECRET=${NEXTAUTH_SECRET:-liberty_club_nextauth_secret_key_2024_very_long_and_secure_string}
+        - API_PREFIX=${API_PREFIX:-/api/v1}
+        - NEXT_PUBLIC_USE_BFF_PROXY=${NEXT_PUBLIC_USE_BFF_PROXY:-false}
+        - NEXT_PUBLIC_BFF_API_URL=${NEXT_PUBLIC_BFF_API_URL:-http://localhost:3005}
+    container_name: liberty-club-spa
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - API_PREFIX=${API_PREFIX:-/api/v1}
+      - NEXT_PUBLIC_API_PREFIX=${API_PREFIX:-/api/v1}
+      - NEXT_PUBLIC_USE_BFF_PROXY=${NEXT_PUBLIC_USE_BFF_PROXY:-false}
+      - NEXT_PUBLIC_BFF_API_URL=${NEXT_PUBLIC_BFF_API_URL:-http://localhost:3005}
+    networks:
+      - liberty-club-network
+
+networks:
+  liberty-club-network:
+    driver: bridge
