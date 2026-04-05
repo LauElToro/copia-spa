@@ -1,0 +1,5 @@
+Liberty Club SPA
+================
+
+Prototipo frontend (Next.js). Estado del sitio: OK.
+Texto estático servido desde /index.txt (útil para comprobar despliegue o CDN).

@@ -1,0 +1,22 @@
+# Next.js en Netlify: el plugin enruta SSR, API routes y el App Router (evita 404 en rutas cliente).
+# Docs: https://docs.netlify.com/frameworks/next-js/overview/
+
+[build]
+  command = "yarn install && yarn build"
+  # publish lo define el plugin; no uses salida estática manual para esta app.
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_TELEMETRY_DISABLED = "1"
+  # Prototipo frontend (mocks); en producción real podés sobrescribir en el UI de Netlify.
+  NEXT_PUBLIC_FRONTEND_ONLY = "true"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
