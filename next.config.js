@@ -152,8 +152,8 @@ const nextConfig = {
   productionBrowserSourceMaps: false,
   // Permite importar CSS desde node_modules
   transpilePackages: ['datatables.net', 'datatables.net-responsive'],
-  // Standalone solo para Docker; en Netlify (NETLIFY=true) el plugin Next usa salida estándar.
-  ...(process.env.NETLIFY === 'true' ? {} : { output: 'standalone' }),
+  // Requerido por @netlify/plugin-nextjs v5 (verifica .next/standalone). Docker también lo usa.
+  output: 'standalone',
   // Configuraci?n experimental - permitir paralelismo en build (Docker/Linux)
   experimental: {
     workerThreads: false,
