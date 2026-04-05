@@ -107,9 +107,8 @@ const nextConfig = {
     ],
     // Optimizar im?genes incluyendo SVG - mantener unoptimized en false para mejor calidad
     formats: ['image/avif', 'image/webp'],
-    // Permitir que Next.js optimice las im?genes pero mantener SVG sin optimizaci?n adicional
-    // Nota: Las im?genes de S3 se manejan con unoptimized en el componente Image
-    unoptimized: false,
+    // En Netlify el optimizador /_next/image a veces falla con OpenNext; servir src directo.
+    unoptimized: process.env.NETLIFY === 'true',
     // Configuraci?n espec?fica para SVG - permitir SVG para mantener calidad vectorial
     dangerouslyAllowSVG: true,
     // CSP permisiva para permitir im?genes de S3 y otros dominios externos

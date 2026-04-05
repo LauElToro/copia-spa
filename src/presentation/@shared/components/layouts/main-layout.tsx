@@ -31,10 +31,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children, pageTitle }) => {
   const isHomePage = pathname === "/";
 
   // URLs de los banners (solo para home)
+  // Assets en /public (Netlify/CDN); evita S3 bloqueado por referrer/403 en prototipo.
   const bannerImages = isHomePage
     ? [
-        "https://prod-libertyclub.s3.us-east-2.amazonaws.com/banners/Banner%202.png",
-        "https://prod-libertyclub.s3.us-east-2.amazonaws.com/banners/Banner%203.png",
+        "/images/bannerhome/banner-1.svg",
+        "/images/bannerhome/banner-2.svg",
+        "/images/bannerhome/banner-3.svg",
       ]
     : [];
 

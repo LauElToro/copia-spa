@@ -35,6 +35,7 @@ export const StoresCarousel: React.FC = () => {
               alt="Banner 1"
               width={1700}
               height={450}
+              unoptimized
               className="d-block w-100 h-100"
               style={{ objectFit: "cover" }}
             />
@@ -51,6 +52,7 @@ export const StoresCarousel: React.FC = () => {
               alt="Banner 2"
               width={1700}
               height={450}
+              unoptimized
               className="d-block w-100 h-100"
               style={{ objectFit: "cover" }}
             />
@@ -67,6 +69,7 @@ export const StoresCarousel: React.FC = () => {
               alt="Banner 3"
               width={1700}
               height={450}
+              unoptimized
               className="d-block w-100 h-100"
               style={{ objectFit: "cover" }}
             />
@@ -94,6 +97,7 @@ export const StoresCarousel: React.FC = () => {
           alt="Prev"
           width={30}
           height={30}
+          unoptimized
           style={{
             filter: hoveredArrow === "prev" ? "drop-shadow(0 0 1.5px #43e97b)" : "none"}}
         />
@@ -114,6 +118,7 @@ export const StoresCarousel: React.FC = () => {
           alt="Next"
           width={30}
           height={30}
+          unoptimized
           style={{
             filter: hoveredArrow === "next" ? "drop-shadow(0 0 1.5px #43e97b)" : "none"}}
         />

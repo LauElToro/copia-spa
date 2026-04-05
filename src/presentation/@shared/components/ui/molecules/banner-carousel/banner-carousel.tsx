@@ -87,6 +87,9 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({
               component="img"
               src={banner}
               alt={`Banner ${index + 1}`}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+              referrerPolicy={banner.startsWith("http") ? "no-referrer" : undefined}
               sx={{
                 width: "100%",
                 height: { 
