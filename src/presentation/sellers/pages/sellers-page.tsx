@@ -8,6 +8,7 @@ import { AnimatedSection } from '@/presentation/@shared/components/ui/atoms/anim
 import PlansGrid from '../components/plans-grid/plans-grid';
 import { plansData } from '@/presentation/@shared/components/ui/molecules/plan-card/plans-data';
 import CompactTestimonialsCarousel from "@/presentation/sellers/components/compact-testimonials-carousel/compact-testimonials-carousel";
+import SellersLandingVideo from "@/presentation/sellers/components/sellers-landing-video";
 import { useLanguage } from '@/presentation/@shared/hooks/use-language';
 import { useModal } from '@/presentation/@shared/hooks/use-modal';
 import PlanDetailContent from '../components/plan-detail-content/plan-detail-content';
@@ -748,6 +749,8 @@ const SellersPage: React.FC = () => {
           <CompactTestimonialsCarousel slides={testimonialSlides} />
         </Container>
       </Box>
+
+      <SellersLandingVideo />
     </MainLayout>
   );
 };

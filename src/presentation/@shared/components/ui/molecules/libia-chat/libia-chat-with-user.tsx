@@ -8,7 +8,7 @@ import { useSubscription } from "@/presentation/@shared/hooks/use-subscription";
 import { useLibiaPageContext } from "@/presentation/@shared/contexts/libia-page-context";
 import { useLibiaAssistantConfig } from "@/presentation/admin/panel/commerce/hooks/use-libia-assistant-config";
 
-const DEFAULT_AVATAR = "https://prod-libertyclub.s3.us-east-2.amazonaws.com/libia/logo-libia.png";
+const DEFAULT_AVATAR = "/images/libia-avatar.svg";
 
 /**
  * Wrapper de LibiaChat que inyecta datos del usuario y el contexto correcto.
