@@ -2,7 +2,7 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useConfiguration } from '@/presentation/@shared/hooks/use-configuration';
-import { isFrontendMockMode } from '@/presentation/@shared/mocks/frontend-mock-flag';
+import { isLibiaMockMode } from '@/presentation/@shared/mocks/frontend-mock-flag';
 
 function getAuthHeader(): string | null {
   if (typeof window === 'undefined') return null;
@@ -67,7 +67,7 @@ export function useLibiaAssistantConfig() {
     queryKey: ['libia', 'comercio', 'config', storeId],
     queryFn: async () => {
       if (!storeId) return defaultConfig;
-      if (isFrontendMockMode()) {
+      if (isLibiaMockMode()) {
         return {
           ...defaultConfig,
           nombre_ia: 'Libia (demo)',
@@ -86,7 +86,7 @@ export function useLibiaAssistantConfig() {
     mutationFn: async (payload: Partial<LibiaConfig> & { storeId?: string }) => {
       const id = payload.storeId ?? storeId;
       if (!id) throw new Error('Store ID requerido');
-      if (isFrontendMockMode()) {
+      if (isLibiaMockMode()) {
         return { ok: true, mock: true };
       }
       const res = await fetch('/api/v1/libia/comercio/config', {
@@ -112,7 +112,7 @@ export function useLibiaAssistantConfig() {
       const headers: Record<string, string> = {};
       const auth = getAuthHeader();
       if (auth) headers['Authorization'] = auth;
-      if (isFrontendMockMode()) {
+      if (isLibiaMockMode()) {
         return `https://picsum.photos/seed/libia-logo-${Date.now()}/200/200`;
       }
       const res = await fetch('/api/v1/libia/comercio/upload-logo', {

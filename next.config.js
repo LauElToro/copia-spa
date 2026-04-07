@@ -55,6 +55,8 @@ const nextConfig = {
     NEXT_PUBLIC_USE_BFF_PROXY: process.env.NEXT_PUBLIC_USE_BFF_PROXY || 'false',
     // Prototipo solo frontend: datos mock y sin llamadas reales a microservicios (false para APIs reales)
     NEXT_PUBLIC_FRONTEND_ONLY: process.env.NEXT_PUBLIC_FRONTEND_ONLY ?? 'true',
+    // Mock solo de Libia; por defecto false para usar fetch real aunque FRONTEND_ONLY sea true
+    NEXT_PUBLIC_LIBIA_MOCK: process.env.NEXT_PUBLIC_LIBIA_MOCK ?? 'false',
     // Configuraci?n de la aplicaci?n
     NEXTAUTH_URL: process.env.NEXTAUTH_URL || 'http://localhost:3000',
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET || 'liberty_club_nextauth_secret_key_2024_very_long_and_secure_string'

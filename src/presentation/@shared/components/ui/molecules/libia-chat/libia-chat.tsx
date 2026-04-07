@@ -174,8 +174,8 @@ export default function LibiaChat({
   // Verifica si LIBIA (libia.libertyclub.io) está disponible vía proxy
   const checkAvailability = useCallback(async () => {
     try {
-      const { isFrontendMockMode } = await import('@/presentation/@shared/mocks/frontend-mock-flag');
-      if (isFrontendMockMode()) {
+      const { isLibiaMockMode } = await import('@/presentation/@shared/mocks/frontend-mock-flag');
+      if (isLibiaMockMode()) {
         setIsAvailable(true);
         return;
       }
@@ -536,9 +536,9 @@ export default function LibiaChat({
       // LIBIA usa solo HTTP POST (fetch), no streaming. Enviamos al proxy /api/v1/libia/ask
       // Si seller/panel/product devuelve error (404/500), fallback a user para mostrar respuesta genérica
       const runRequest = async (): Promise<ChatSuccessResponse & ChatErrorResponse> => {
-        const { isFrontendMockMode } = await import('@/presentation/@shared/mocks/frontend-mock-flag');
+        const { isLibiaMockMode } = await import('@/presentation/@shared/mocks/frontend-mock-flag');
         const { libiaMockReply } = await import('@/presentation/@shared/mocks/libia-frontend-mock');
-        if (isFrontendMockMode()) {
+        if (isLibiaMockMode()) {
           return libiaMockReply(600);
         }
         const p = buildPayload(text);

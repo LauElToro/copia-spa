@@ -11,7 +11,7 @@ import { Breadcrumb } from "@/presentation/@shared/components/ui/molecules/bread
 import { useLibiaAssistantConfig } from "../hooks/use-libia-assistant-config";
 import { useToast } from "@/presentation/@shared/components/ui/molecules/toast";
 import { useLanguage } from "@/presentation/@shared/hooks/use-language";
-import { isFrontendMockMode } from "@/presentation/@shared/mocks/frontend-mock-flag";
+import { isLibiaMockMode } from "@/presentation/@shared/mocks/frontend-mock-flag";
 import { libiaMockReply } from "@/presentation/@shared/mocks/libia-frontend-mock";
 import "./panel-ai-assistant.css";
 
@@ -429,7 +429,7 @@ export default function PanelProLiberterAssistantMarkPage() {
     setTestLoading(true);
     setTestResponse(null);
     try {
-      if (isFrontendMockMode()) {
+      if (isLibiaMockMode()) {
         const data = await libiaMockReply(500);
         setTestResponse(data.response);
         return;
